@@ -27,4 +27,4 @@ hibernate:
     physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
 
 app:
-  defaultPassword: cl@123
+  defaultPassword: tus@123

@@ -20,68 +20,9 @@ public class AccountController {
 
     private final AccountService accountService;
 
-    @GetMapping("/account/{id}")
-    public ResponseEntity<AccountResponse> findById(@PathVariable String id){
-        return ResponseEntity.ok(
-            getAccountResponse().apply(
-                accountService.findById(id)));
-    }
-
-    @PostMapping("/account-by-name")
-    public ResponseEntity<List<AccountResponse>> findByName(@RequestBody AccountRequest request){
-        return ResponseEntity.ok(accountService.findByName(request)
-                .stream()
-                .map(user -> getAccountResponse().apply(user))
-                .collect(toList()));
-    }
-
     @GetMapping("/user")
     public ResponseEntity<AccountResponse> userDetail() {
         return ResponseEntity.ok(getAccountResponse().apply(accountService.getLoggedUser()));
-    }
-
-    @PutMapping("/account/{id}")
-    public ResponseEntity<AccountResponse> update(@RequestBody User entity,
-                                                  @PathVariable String id) {
-        return ResponseEntity.ok(
-                getAccountResponse().apply(
-                        accountService.update(entity, id)));
-    }
-
-    @PostMapping("/account")
-    public ResponseEntity<AccountResponse> create(@RequestBody User entity) {
-        return ResponseEntity.ok(
-                getAccountResponse().apply(
-                        accountService.create(entity)));
-    }
-
-    @GetMapping("/accounts")
-    public ResponseEntity<List<AccountResponse>> getAll() {
-        return ResponseEntity.ok(
-                accountService.findAll()
-                        .stream()
-                        .map(user -> getAccountResponse().apply(user))
-                        .collect(toList())
-        );
-
-    }
-
-    @DeleteMapping("/account/{id}")
-    public ResponseEntity<Boolean> delete(@PathVariable String id) {
-        return ResponseEntity.ok(accountService.delete(id));
-    }
-
-    @DeleteMapping("/delete-root-account/{id}")
-    public ResponseEntity<Boolean> deleteRootAccount(@PathVariable String id) {
-        return ResponseEntity.ok(accountService.deleteRootAccount(id));
-    }
-
-    @PostMapping("/account/update-password/{id}")
-    public ResponseEntity<Boolean> updatePassword(
-            @PathVariable String id,
-            @RequestBody UpdatePasswordRequest request) {
-        accountService.updatePassword(request, id);
-        return ResponseEntity.ok(true);
     }
 
 }

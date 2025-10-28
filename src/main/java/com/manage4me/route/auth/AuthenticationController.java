@@ -32,12 +32,6 @@ public class AuthenticationController {
         return ResponseEntity.ok(authenticationService.authentication(authRequest));
     }
 
-    @PostMapping("/forgot-password/{lang}")
-    public ResponseEntity<Boolean> forgotPassword(@RequestBody AuthRequest authRequest,
-                                                  @PathVariable String lang) {
-        return ResponseEntity.ok(authenticationService.forgotPassword(authRequest.email(), lang));
-    }
-
     @GetMapping("/user")
     public Principal getUser(Principal user) {
         return user;
