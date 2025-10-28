@@ -10,7 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import static com.manage4me.route.commons.ErrorCodes.APP_0002;
-import static com.manage4me.route.commons.ErrorCodes.APP_0011;
 import static java.util.Objects.isNull;
 import static org.springframework.util.StringUtils.hasLength;
 
@@ -62,28 +61,6 @@ public class CompanyService {
                     productCompanyStatusRepository.save(productCompanyStatus);
                 });
         log.info("Saved Company Product link successfully - {}", companyProducts);
-    }
-
-    public Company update(Company entity) {
-        validate(entity);
-        Company old = findById(entity.getId());
-
-        old.setName(entity.getName());
-        old.setDocumentRegistration(entity.getDocumentRegistration());
-        old.setAddress(entity.getAddress());
-        old.setPhone(entity.getPhone());
-
-        log.info("Company Updated successfully");
-        return companyRepository.save(old);
-    }
-
-    public Company findById(String id) {
-        if (!hasLength(id)) {
-            exceptionHandler.throwException(APP_0002::name, "Id");
-        }
-        return companyRepository.findById(id).orElseThrow(
-                () -> exceptionHandler.throwException(APP_0011::name, "Company")
-        );
     }
 
     private void validate(Company entity) {

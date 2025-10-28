@@ -1,16 +1,13 @@
 package com.manage4me.route.account;
 
-import com.manage4me.route.entities.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import static com.manage4me.route.account.AccountHelper.getAccountResponse;
-import static com.manage4me.route.account.AccountHelper.getUserFromRequest;
-import static java.util.stream.Collectors.toList;
 
 @Log4j2
 @RequiredArgsConstructor

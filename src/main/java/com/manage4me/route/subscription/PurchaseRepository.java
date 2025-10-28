@@ -21,16 +21,4 @@ public interface PurchaseRepository extends CrudRepository<Purchase, String> {
     """, nativeQuery = true)
     Purchase findByCompany(String companyId);
 
-    @Query(value = """
-        SELECT purchase.* FROM app_purchase purchase
-        LEFT JOIN app_product product on product.id=purchase.product_id
-        WHERE purchase.status='ACTIVE'
-        AND product.sku!='free_subscription'
-        AND product.type='SUBSCRIPTION';
-    """, nativeQuery = true)
-    List<Purchase> findAllByStatusAndProductType();
-
-    List<Purchase> findAllByCompanyIdAndStatusOrderByCreatedDateDesc(String companyId, Status status);
-
-    List<Purchase> findAllByCompanyIdAndProductAndStatusOrderByCreatedDateDesc(String companyId, Product product, Status status);
 }

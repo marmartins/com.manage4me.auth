@@ -2,13 +2,10 @@ package com.manage4me.route.account;
 
 import com.manage4me.route.commons.ControllerExceptionHandler;
 import com.manage4me.route.entities.*;
-import com.manage4me.route.subscription.ProductCompanyStatusService;
 import com.manage4me.route.subscription.ProductService;
 import com.manage4me.route.subscription.PurchaseRepository;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,9 +13,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-
 
 import static com.manage4me.route.commons.ErrorCodes.*;
 import static java.util.Objects.isNull;
@@ -29,15 +23,11 @@ import static org.springframework.util.StringUtils.hasLength;
 @RequiredArgsConstructor
 public class AccountService {
 
-    @Value("${app.defaultPassword:cl@123}")
-    private String defaultPassword;
-
     private final ControllerExceptionHandler exceptionHandler;
 
     private final AccountRepository accountRepository;
     private final PasswordEncoder passwordEncoder;
     private final CompanyService companyService;
-    private final ProductCompanyStatusService productCompanyStatusService;
     private final PurchaseRepository purchaseRepository;
     private final ProductService productService;
 

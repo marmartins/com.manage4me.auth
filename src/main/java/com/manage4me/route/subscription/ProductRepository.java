@@ -11,8 +11,4 @@ public interface ProductRepository extends CrudRepository<Product, String> {
 
     Product findBySku(String sku);
 
-    List<Product> findAllByOrderBySkuDesc();
-
-    List<Product> findAllByRenewable(boolean renewable);
-
 }
